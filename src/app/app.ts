@@ -4,10 +4,11 @@ import { MetaService } from './services/meta.service';
 import { Hero } from "./sections/hero/hero";
 import { Service } from "./sections/service/service";
 import { Process } from "./sections/process/process";
+import { About } from "./sections/about/about";
 
 @Component({
   selector: 'app-root',
-  imports: [Nav, Hero, Service, Process],
+  imports: [Nav, Hero, Service, Process, About],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
