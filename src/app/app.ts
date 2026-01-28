@@ -5,10 +5,11 @@ import { Hero } from "./sections/hero/hero";
 import { Service } from "./sections/service/service";
 import { Process } from "./sections/process/process";
 import { About } from "./sections/about/about";
+import { Questions } from "./sections/questions/questions";
 
 @Component({
   selector: 'app-root',
-  imports: [Nav, Hero, Service, Process, About],
+  imports: [Nav, Hero, Service, Process, About, Questions],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
