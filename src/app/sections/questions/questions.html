@@ -62,7 +62,7 @@
       <div class="space-y-4">
         @for (question of questions(); track question.id) {
           <div
-            class="group glass rounded-2xl px-6 lg:px-8 shadow-lg shadow-text/5 border-none transition-all duration-500"
+            class="group glass rounded-2xl px-6 lg:px-8 shadow-lg shadow-text/5 border border-gray-200 transition-all duration-500"
             [class.shadow-xl]="isOpen(question.id)"
             [class.shadow-teal/10]="isOpen(question.id)"
           >
@@ -114,7 +114,9 @@
         }
       </div>
       <div class="mt-12 text-center">
-        <div class="inline-flex items-center gap-3 px-6 py-4 rounded-2xl bg-white shadow-lg">
+        <div
+          class="inline-flex border border-gray-200 items-center gap-3 px-6 py-4 rounded-2xl bg-white shadow-lg"
+        >
           <div class="w-3 h-3 rounded-full bg-teal animate-pulse"></div>
           <p class="text-text-color/70">
             Tienes mas preguntas?
