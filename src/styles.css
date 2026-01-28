@@ -9,3 +9,8 @@
   --color-light-gray: #f6f6f6;
   --color-text-color: #0c1937;
 }
+
+body {
+  font-family: 'Inter', 'Poppins', sans-serif;
+  font-optical-sizing: auto;
+}

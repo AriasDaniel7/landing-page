@@ -1,12 +1,17 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { Nav } from './components/nav/nav';
+import { MetaService } from './services/meta.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [Nav],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
-export class App {
-  protected readonly title = signal('landing-page');
+export class App implements OnInit {
+  protected readonly metaService = inject(MetaService);
+
+  ngOnInit(): void {
+    this.metaService.setDefaultMetaTags();
+  }
 }
