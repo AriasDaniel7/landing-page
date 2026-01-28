@@ -11,10 +11,13 @@ export interface MetaTags {
   ogDescription?: string;
   ogImage?: string;
   ogUrl?: string;
+  ogType?: string;
+  ogSiteName?: string;
   twitterCard?: string;
   twitterTitle?: string;
   twitterDescription?: string;
   twitterImage?: string;
+  twitterSite?: string;
 }
 
 @Injectable({
@@ -66,6 +69,14 @@ export class MetaService {
       this.meta.updateTag({ property: 'og:url', content: tags.ogUrl });
     }
 
+    if (tags.ogType) {
+      this.meta.updateTag({ property: 'og:type', content: tags.ogType });
+    }
+
+    if (tags.ogSiteName) {
+      this.meta.updateTag({ property: 'og:site_name', content: tags.ogSiteName });
+    }
+
     // Twitter Card tags
     if (tags.twitterCard) {
       this.meta.updateTag({ name: 'twitter:card', content: tags.twitterCard });
@@ -82,21 +93,37 @@ export class MetaService {
     if (tags.twitterImage) {
       this.meta.updateTag({ name: 'twitter:image', content: tags.twitterImage });
     }
+
+    if (tags.twitterSite) {
+      this.meta.updateTag({ name: 'twitter:site', content: tags.twitterSite });
+    }
   }
 
   setDefaultMetaTags(): void {
+    const baseUrl =
+      typeof window !== 'undefined' ? window.location.origin : 'https://landing-page-c32.pages.dev';
+    const imageUrl = `${baseUrl}/assets/icon-512.png`;
+
     this.setMetaTags({
       title: 'MarcaFirme USA | Registro de Marca en Estados Unidos',
       description:
         'Asesoría legal clara para registrar tu marca en USA. Evaluación inicial sin costo y soporte por WhatsApp.',
+      keywords:
+        'registro de marca, marca registrada, USPTO, registro marca estados unidos, marcas USA, trademark, registro trademark, abogado marcas',
+      author: 'MarcaFirme USA',
       robots: 'index, follow',
       ogTitle: 'MarcaFirme USA | Registro de Marca en Estados Unidos',
       ogDescription:
         'Asesoría legal clara para registrar tu marca en USA. Evaluación inicial sin costo y soporte por WhatsApp.',
+      ogImage: imageUrl,
+      ogUrl: baseUrl,
+      ogType: 'website',
+      ogSiteName: 'MarcaFirme USA',
       twitterCard: 'summary_large_image',
       twitterTitle: 'MarcaFirme USA | Registro de Marca en Estados Unidos',
       twitterDescription:
         'Asesoría legal clara para registrar tu marca en USA. Evaluación inicial sin costo y soporte por WhatsApp.',
+      twitterImage: imageUrl,
     });
   }
 

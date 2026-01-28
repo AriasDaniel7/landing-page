@@ -1,9 +1,10 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ScrollService } from '../../common/services/scroll.service';
 
 @Component({
   selector: 'app-hero',
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './hero.html',
   styleUrl: './hero.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
