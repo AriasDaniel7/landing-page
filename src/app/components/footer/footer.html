@@ -12,10 +12,10 @@
     <div class="py-12 lg:py-16 border-b border-white/10">
       <div class="flex flex-col lg:flex-row items-center justify-between gap-8">
         <div class="shrink-0 w-70 h-20 overflow-hidden">
-          <a href="/" class="block mr-4">
+          <a href="/">
             <img
               alt="MarcaFirme USA"
-              class="h-20 w-auto drop-shadow-md drop-shadow-primary/30 object-cover"
+              class="h-20 w-auto drop-shadow-md drop-shadow-primary/30 object-cover object-left"
               ngSrc="/assets/logo-marcafirme-dark.svg"
               width="140"
               height="80"
@@ -24,18 +24,34 @@
           </a>
         </div>
         <nav class="flex flex-wrap items-center justify-center gap-6 lg:gap-10">
-          <a href="#services" class="text-white/70 hover:text-teal transition-colors font-medium"
+          <a
+            href="#services"
+            (click)="navigateToSection('services', $event)"
+            class="text-white/70 hover:text-teal transition-colors font-medium"
             >Servicios</a
-          ><a href="#process" class="text-white/70 hover:text-teal transition-colors font-medium"
+          >
+          <a
+            href="#process"
+            (click)="navigateToSection('process', $event)"
+            class="text-white/70 hover:text-teal transition-colors font-medium"
             >Proceso</a
-          ><a href="#questions" class="text-white/70 hover:text-teal transition-colors font-medium"
+          >
+          <a
+            href="#questions"
+            (click)="navigateToSection('questions', $event)"
+            class="text-white/70 hover:text-teal transition-colors font-medium"
             >Preguntas</a
-          ><a href="#contact" class="text-white/70 hover:text-teal transition-colors font-medium"
+          >
+          <a
+            href="#contact"
+            (click)="navigateToSection('contact', $event)"
+            class="text-white/70 hover:text-teal transition-colors font-medium"
             >Contacto</a
           >
         </nav>
         <button
-          class="w-12 h-12 rounded-full bg-linear-to-br from-teal to-cyan flex items-center justify-center shadow-lg shadow-teal/30 hover:scale-110 transition-transform"
+          (click)="scrollToTop($event)"
+          class="w-12 h-12 rounded-full bg-linear-to-br from-teal to-cyan flex items-center justify-center shadow-lg shadow-teal/30 hover:scale-110 transition-transform cursor-pointer"
           aria-label="Scroll to top"
         >
           <svg

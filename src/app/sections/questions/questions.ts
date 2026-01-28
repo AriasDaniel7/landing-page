@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ScrollService } from '../../common/services/scroll.service';
 
 interface Question {
   id: number;
@@ -15,6 +16,7 @@ interface Question {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Questions {
+  protected readonly scrollService = inject(ScrollService);
   protected readonly openQuestionId = signal<number | null>(null);
 
   protected readonly questions = signal<Question[]>([
@@ -47,5 +49,12 @@ export class Questions {
 
   isOpen(id: number): boolean {
     return this.openQuestionId() === id;
+  }
+
+  navigateToSection(sectionId: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+    this.scrollService.scrollToSection(sectionId);
   }
 }

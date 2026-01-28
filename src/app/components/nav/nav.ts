@@ -1,5 +1,6 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ScrollService } from '../../common/services/scroll.service';
 
 @Component({
   selector: 'app-nav',
@@ -9,9 +10,19 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Nav {
+  protected readonly scrollService = inject(ScrollService);
+
   isMenuOpen = signal(false);
 
-  toggleMenu() {
+  toggleMenu(): void {
     this.isMenuOpen.update((isOpen) => !isOpen);
+  }
+
+  navigateToSection(sectionId: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+    this.scrollService.scrollToSection(sectionId);
+    this.isMenuOpen.set(false);
   }
 }

@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ScrollService } from '../../common/services/scroll.service';
 
 @Component({
   selector: 'app-hero',
@@ -7,4 +8,13 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './hero.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Hero { }
+export class Hero {
+  protected readonly scrollService = inject(ScrollService);
+
+  navigateToSection(sectionId: string, event?: Event): void {
+    if (event) {
+      event.preventDefault();
+    }
+    this.scrollService.scrollToSection(sectionId);
+  }
+}

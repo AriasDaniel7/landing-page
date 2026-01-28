@@ -68,6 +68,7 @@
             <a
               class="relative block cursor-pointer group py-2 hover:text-primary transition-colors duration-300 ease-in-out"
               href="#services"
+              (click)="navigateToSection('services', $event)"
               >Servicios
               <span
                 class="absolute bottom-0 left-0 lg:left-1/2 lg:-translate-x-1/2 w-0 h-0.5 bg-linear-to-r from-teal to-cyan transition-all duration-300 group-hover:w-full lg:group-hover:w-3/4 rounded-full"
@@ -78,6 +79,7 @@
             <a
               class="relative block cursor-pointer group py-2 hover:text-primary transition-colors duration-300 ease-in-out"
               href="#process"
+              (click)="navigateToSection('process', $event)"
               >Proceso
               <span
                 class="absolute bottom-0 left-0 lg:left-1/2 lg:-translate-x-1/2 w-0 h-0.5 bg-linear-to-r from-teal to-cyan transition-all duration-300 group-hover:w-full lg:group-hover:w-3/4 rounded-full"
@@ -88,6 +90,7 @@
             <a
               class="relative block cursor-pointer group py-2 hover:text-primary transition-colors duration-300 ease-in-out"
               href="#questions"
+              (click)="navigateToSection('questions', $event)"
               >Preguntas
               <span
                 class="absolute bottom-0 left-0 lg:left-1/2 lg:-translate-x-1/2 w-0 h-0.5 bg-linear-to-r from-teal to-cyan transition-all duration-300 group-hover:w-full lg:group-hover:w-3/4 rounded-full"
@@ -98,6 +101,7 @@
             <a
               class="relative block cursor-pointer group py-2 hover:text-primary transition-colors duration-300 ease-in-out"
               href="#contact"
+              (click)="navigateToSection('contact', $event)"
               >Contacto
               <span
                 class="absolute bottom-0 left-0 lg:left-1/2 lg:-translate-x-1/2 w-0 h-0.5 bg-linear-to-r from-teal to-cyan transition-all duration-300 group-hover:w-full lg:group-hover:w-3/4 rounded-full"
@@ -109,6 +113,7 @@
       <div class="w-full lg:w-auto py-4 lg:py-0">
         <a
           href="#contact"
+          (click)="navigateToSection('contact', $event)"
           data-slot="button"
           class="w-full inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg:not([class*='size-'])]:size-4 shrink-0 [&amp;_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive hover:bg-primary/90 py-2 has-[&gt;svg]:px-3 relative overflow-hidden bg-linear-to-r from-teal to-cyan text-white font-semibold px-8 h-12 rounded-full shadow-lg shadow-teal/20 hover:shadow-teal/40 transition-all duration-300 hover:scale-105 group"
           ><span class="relative z-10">Agendar asesoria</span
