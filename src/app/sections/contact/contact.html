@@ -1,0 +1,380 @@
+<section id="contact" class="relative py-24 lg:py-32 overflow-hidden">
+  <div
+    class="absolute inset-0 bg-cover bg-center"
+    style="background-image: url('/assets/section-bg.png')"
+  ></div>
+  <div class="absolute inset-0 bg-linear-to-br from-white/90 via-white/80 to-light-gray/90"></div>
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <div class="grid lg:grid-cols-5 gap-12 lg:gap-16 max-w-7xl mx-auto">
+      <div class="lg:col-span-3">
+        <div class="relative">
+          <div
+            class="absolute -inset-4 bg-linear-to-br from-teal/20 via-cyan/10 to-primary/20 rounded-[2.5rem] blur-2xl opacity-50"
+          ></div>
+          <div class="relative glass rounded-3xl p-8 md:p-10 lg:p-12 shadow-2xl">
+            <div class="flex items-center gap-3 mb-2">
+              <div
+                class="w-12 h-12 rounded-2xl bg-linear-to-br from-teal to-cyan flex items-center justify-center shadow-lg shadow-teal/30"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-send w-5 h-5 text-white"
+                >
+                  <path d="m22 2-7 20-4-9-9-4Z"></path>
+                  <path d="M22 2 11 13"></path>
+                </svg>
+              </div>
+              <div>
+                <h2 class="font-bold text-2xl md:text-3xl text-text-color">Evaluacion rapida</h2>
+              </div>
+            </div>
+            <p class="text-text-color/60 mb-8 ml-15">
+              Dejanos tus datos y te contactamos hoy o el siguiente dia habil.
+            </p>
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                  <label
+                    class="flex items-center gap-2 text-sm leading-none select-none text-text-color font-medium"
+                    for="nombre"
+                    >Nombre completo *</label
+                  >
+                  <input
+                    formControlName="name"
+                    class="w-full min-w-0 border px-3 py-1 text-base shadow-xs outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-teal focus-visible:ring-teal/50 focus-visible:ring-[3px] h-14 rounded-xl border-gray-200/50 bg-white/80 focus:border-teal focus:ring-teal/20 transition-all"
+                    id="nombre"
+                    placeholder="Tu nombre"
+                    type="text"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="flex items-center gap-2 text-sm leading-none select-none text-text-color font-medium"
+                    for="correo"
+                    >Correo *</label
+                  >
+                  <input
+                    formControlName="email"
+                    class="w-full min-w-0 border px-3 py-1 text-base shadow-xs outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-teal focus-visible:ring-teal/50 focus-visible:ring-[3px] h-14 rounded-xl border-gray-200/50 bg-white/80 focus:border-teal focus:ring-teal/20 transition-all"
+                    id="correo"
+                    placeholder="tu@email.com"
+                    type="email"
+                  />
+                </div>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-6">
+                <div class="space-y-2">
+                  <label
+                    class="flex items-center gap-2 text-sm leading-none select-none text-text-color font-medium"
+                    for="telefono"
+                    >Telefono *</label
+                  >
+                  <input
+                    formControlName="phone"
+                    class="w-full min-w-0 border px-3 py-1 text-base shadow-xs outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-teal focus-visible:ring-teal/50 focus-visible:ring-[3px] h-14 rounded-xl border-gray-200/50 bg-white/80 focus:border-teal focus:ring-teal/20 transition-all"
+                    id="telefono"
+                    placeholder="+1 (555) 000-0000"
+                    type="tel"
+                  />
+                </div>
+                <div class="space-y-2">
+                  <label
+                    class="flex items-center gap-2 text-sm leading-none select-none text-text-color font-medium"
+                    for="servicio"
+                    >Servicio *</label
+                  >
+                  <div class="relative">
+                    <button
+                      type="button"
+                      (click)="toggleServiceDropdown()"
+                      class="flex w-full items-center justify-between gap-2 border px-4 py-2 text-sm whitespace-nowrap shadow-xs transition-all outline-none focus-visible:ring-[3px] focus-visible:border-teal focus-visible:ring-teal/50 h-14 rounded-xl border-gray-200/50 bg-white/80"
+                      [class.text-text-color/40]="!contactForm.value.service"
+                    >
+                      <span>{{ getSelectedServiceLabel() }}</span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="size-4 opacity-50 transition-transform duration-200"
+                        [class.rotate-180]="isServiceOpen()"
+                      >
+                        <path d="m6 9 6 6 6-6"></path>
+                      </svg>
+                    </button>
+                    <div
+                      class="absolute z-50 mt-2 w-full rounded-xl border border-gray-200 bg-white shadow-lg transition-all duration-200 overflow-hidden"
+                      [class.max-h-0]="!isServiceOpen()"
+                      [class.opacity-0]="!isServiceOpen()"
+                      [class.max-h-60]="isServiceOpen()"
+                      [class.opacity-100]="isServiceOpen()"
+                    >
+                      <div class="p-1">
+                        @for (service of services; track service.value) {
+                          <button
+                            type="button"
+                            (click)="selectService(service)"
+                            class="w-full text-left px-3 py-2 text-sm rounded-lg hover:bg-teal/10 hover:text-teal transition-colors"
+                            [class.bg-teal/10]="contactForm.value.service === service.value"
+                            [class.text-teal]="contactForm.value.service === service.value"
+                          >
+                            {{ service.label }}
+                          </button>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="flex items-start space-x-3 pt-2">
+                <div class="flex items-start space-x-3 cursor-pointer" (click)="togglePrivacy()">
+                  <button
+                    type="button"
+                    role="checkbox"
+                    [attr.aria-checked]="isPrivacyChecked()"
+                    class="size-4 shrink-0 border shadow-xs transition-all outline-none focus-visible:ring-[3px] focus-visible:border-teal focus-visible:ring-teal/50 disabled:cursor-not-allowed disabled:opacity-50 mt-1 rounded-md border-gray-300 pointer-events-none"
+                    [class.bg-teal]="isPrivacyChecked()"
+                    [class.border-teal]="isPrivacyChecked()"
+                    id="privacidad"
+                  >
+                    @if (isPrivacyChecked()) {
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="w-full h-full text-white p-0.5"
+                      >
+                        <path d="M20 6 9 17l-5-5"></path>
+                      </svg>
+                    }
+                  </button>
+                  <span class="select-none text-sm text-text-color/70 font-normal leading-relaxed">
+                    Acepto la
+                    <a
+                      href="#"
+                      class="text-primary hover:text-teal transition-colors font-medium"
+                      (click)="$event.stopPropagation(); $event.preventDefault()"
+                      >Politica de privacidad</a
+                    >
+                  </span>
+                </div>
+              </div>
+              <button
+                type="submit"
+                [disabled]="!contactForm.valid || !isPrivacyChecked()"
+                class="inline-flex items-center justify-center gap-2 whitespace-nowrap disabled:pointer-events-none disabled:opacity-50 outline-none focus-visible:ring-[3px] focus-visible:ring-teal/50 px-4 py-2 w-full h-14 bg-linear-to-r from-teal to-cyan hover:from-cyan hover:to-primary text-white font-semibold text-base rounded-xl shadow-lg shadow-teal/25 hover:shadow-teal/40 transition-all duration-300 group"
+              >
+                <span class="flex items-center gap-2"
+                  >Solicitar evaluacion
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                  >
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-2 flex flex-col justify-center">
+        <span
+          class="inline-block px-4 py-1.5 rounded-full bg-teal/10 text-teal text-sm font-semibold mb-4 w-fit"
+          >Contacto directo</span
+        >
+        <h2 class="font-bold text-2xl md:text-3xl text-text-color mb-8">
+          Estamos aqui para ayudarte
+        </h2>
+        <div class="space-y-5">
+          <div
+            class="group flex items-start gap-4 p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/50 shadow-sm hover:shadow-lg hover:shadow-teal/10 transition-all duration-300 hover:-translate-y-1"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-green-400 to-green-500 p-0.5 shrink-0 group-hover:scale-110 transition-transform duration-300"
+            >
+              <div class="w-full h-full rounded-xl bg-white flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-phone w-5 h-5 text-teal"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs text-text-color/50 uppercase tracking-wider mb-1">WhatsApp</p>
+              <a
+                href="https://wa.me/15550127842"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-text-color font-medium hover:text-teal transition-colors"
+                >+1 (555) 012-7842</a
+              >
+            </div>
+          </div>
+          <div
+            class="group flex items-start gap-4 p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/50 shadow-sm hover:shadow-lg hover:shadow-teal/10 transition-all duration-300 hover:-translate-y-1"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-teal to-cyan p-0.5 shrink-0 group-hover:scale-110 transition-transform duration-300"
+            >
+              <div class="w-full h-full rounded-xl bg-white flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-mail w-5 h-5 text-teal"
+                >
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs text-text-color/50 uppercase tracking-wider mb-1">Correo</p>
+              <a
+                href="mailto:hola@marcafirmeusa.com"
+                class="text-text-color font-medium hover:text-teal transition-colors"
+                >hola@marcafirmeusa.com</a
+              >
+            </div>
+          </div>
+          <div
+            class="group flex items-start gap-4 p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/50 shadow-sm hover:shadow-lg hover:shadow-teal/10 transition-all duration-300 hover:-translate-y-1"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-cyan to-primary p-0.5 shrink-0 group-hover:scale-110 transition-transform duration-300"
+            >
+              <div class="w-full h-full rounded-xl bg-white flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-clock w-5 h-5 text-teal"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs text-text-color/50 uppercase tracking-wider mb-1">Horario</p>
+              <p class="text-text-color font-medium">Lun a Vie: 9:00 AM - 6:00 PM (ET)</p>
+            </div>
+          </div>
+          <div
+            class="group flex items-start gap-4 p-4 rounded-2xl bg-white/60 backdrop-blur-sm border border-white/50 shadow-sm hover:shadow-lg hover:shadow-teal/10 transition-all duration-300 hover:-translate-y-1"
+          >
+            <div
+              class="w-12 h-12 rounded-xl bg-linear-to-br from-primary to-teal p-0.5 shrink-0 group-hover:scale-110 transition-transform duration-300"
+            >
+              <div class="w-full h-full rounded-xl bg-white flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-map-pin w-5 h-5 text-teal"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+            </div>
+            <div>
+              <p class="text-xs text-text-color/50 uppercase tracking-wider mb-1">Direccion</p>
+              <p class="text-text-color font-medium">
+                1200 Brickell Ave, Suite 900, Miami, FL 33131
+              </p>
+            </div>
+          </div>
+        </div>
+        <div
+          class="mt-8 rounded-2xl overflow-hidden border border-white/50 shadow-lg bg-linear-to-br from-light to-white p-6"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="w-16 h-16 rounded-xl bg-linear-to-br from-primary to-teal flex items-center justify-center shadow-lg"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-map-pin w-8 h-8 text-white"
+              >
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+            </div>
+            <div>
+              <p class="font-bold text-lg text-text-color">Miami, Florida</p>
+              <p class="text-sm text-text-color/60">Brickell Ave</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -6,10 +6,11 @@ import { Service } from "./sections/service/service";
 import { Process } from "./sections/process/process";
 import { About } from "./sections/about/about";
 import { Questions } from "./sections/questions/questions";
+import { Contact } from "./sections/contact/contact";
 
 @Component({
   selector: 'app-root',
-  imports: [Nav, Hero, Service, Process, About, Questions],
+  imports: [Nav, Hero, Service, Process, About, Questions, Contact],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
